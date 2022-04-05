@@ -24,6 +24,11 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "linebreak-style": 0
+    "linebreak-style": 0,
+    "comma-dangle": ["error", {
+      "imports": "never",
+      "exports": "never",
+      "functions": "never"
+  }]
   }
 }
