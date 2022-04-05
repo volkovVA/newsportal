@@ -1,0 +1,22 @@
+.news-card {
+  /* width: 20rem; */
+  box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.2);
+}
+
+.news-card-img {
+  border-top: 3px solid #0d6efd;
+}
+
+.news-card-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.news-card-subtitle {
+  margin-bottom: 3rem;
+  color: #6c757d;
+}
+
+.news-card-btn {
+  margin-left: 0.5rem;
+}

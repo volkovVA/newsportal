@@ -1,6 +1,5 @@
-import { useId } from 'react';
-import NewsService from '../../services/news-service';
-import * as types from '../constants/action-type';
+import NewsService from '../../services';
+import * as types from '../constants';
 
 const newsService = new NewsService();
 
@@ -18,19 +17,19 @@ const newsFailure = (error) => ({
   payload: error
 });
 
-const fetchNews = () => (dispatch) => {
+const fetchNews = () => async (dispatch) => {
   dispatch(newsRequested());
-  newsService
-    .getNews()
-    .then((data) => {
-      const result = data.articles.map((el) => ({
-        ...el,
-        id: useId(),
-        like: false
-      }));
-      dispatch(newsLoaded(result));
-    })
-    .catch((err) => dispatch(newsFailure(err)));
+  const data = await newsService.getNews();
+  try {
+    const result = data.articles.map((el, idx) => ({
+      ...el,
+      id: idx,
+      like: false
+    }));
+    dispatch(newsLoaded(result));
+  } catch (error) {
+    dispatch(newsFailure(error));
+  }
 };
 
 export default fetchNews;

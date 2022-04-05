@@ -1,0 +1,48 @@
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.news-header .logo {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  font-family: 'PlayFair Display', Georgia, serif;
+  font-size: 3.5rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #212529;
+}
+
+.news-header .logo span {
+  color: #dc3545;
+}
+
+@media (max-width: 769px) {
+  .news-header .logo {font-size: 2.5rem}
+}
+
+@media (max-width: 576px) {
+  .news-header .logo {font-size: 2rem}
+}
+
+.news-header .logo::before {
+  content: '';
+  display: block;
+  margin-right: 1rem;
+  margin-top: 7px;
+  width: 3.5rem;
+  height: 3.5rem;
+  background-image: url('../../assets/image/logo/earthglobe.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.show-btn {
+  margin-left: 0.5rem;
+}

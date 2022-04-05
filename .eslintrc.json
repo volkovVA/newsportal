@@ -25,6 +25,9 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "linebreak-style": 0,
+    "default-param-last": 0,
+    "react/prop-types": 0,
+    "react-hooks/exhaustive-deps": 0,
     "comma-dangle": ["error", {
       "imports": "never",
       "exports": "never",

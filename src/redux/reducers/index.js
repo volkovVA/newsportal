@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../constants/action-type';
+import * as types from '../constants';
 
 const initialState = {
   news: [],
@@ -7,7 +7,7 @@ const initialState = {
   error: null
 };
 
-const newsReducer = (state = initialState, action = undefined) => {
+const receivedNewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_NEWS_REQUEST: {
       return {
@@ -37,5 +37,5 @@ const newsReducer = (state = initialState, action = undefined) => {
 };
 
 export default combineReducers({
-  news: newsReducer
+  receivedNews: receivedNewsReducer
 });
