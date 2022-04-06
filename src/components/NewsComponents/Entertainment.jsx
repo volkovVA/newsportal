@@ -1,6 +1,5 @@
-import React from 'react';
-import NewsListContainer from '../NewsList/NewsList';
+import Auxiliary from '../../auxiliary/Auxiliary';
 
 export default function Entertainment() {
-  return <NewsListContainer url="entertainment" />;
+  return Auxiliary('entertainment');
 }

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+// import { useSelector, useDispatch } from 'react-redux';
 import Masonry from 'react-masonry-css';
-import fetchNews from '../../redux/actions';
+// import { fetchNews, newsLike } from '../../redux/actions';
 import NewsItem from '../NewsItem/NewsItem';
 import './NewsList.css';
 
@@ -12,7 +12,7 @@ const breakpointColumnsObj = {
   500: 1
 };
 
-function NewsList({ news }) {
+function NewsList({ news, onAddedLike }) {
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
@@ -20,21 +20,22 @@ function NewsList({ news }) {
       columnClassName="my-masonry-grid_column"
     >
       {news.map((item) => (
-        <NewsItem key={item.id} news={item} />
+        <NewsItem key={item.id} news={item} onAddedLike={onAddedLike} />
       ))}
     </Masonry>
   );
 }
 
-function NewsListContainer({ url }) {
-  const dispatch = useDispatch();
-  const { receivedNews } = useSelector((state) => state.receivedNews);
+function NewsListContainer({ news }) {
+  // const dispatch = useDispatch();
+  // const { receivedNews } = useSelector((state) => state.receivedNews);
 
-  useEffect(() => {
-    dispatch(fetchNews(url));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(fetchNews(url));
+  // }, []);
 
-  receivedNews.map((item) => ({
+  // const onAddedLike = (id) => dispatch(newsLike(id));
+  news.map((item) => ({
     title: item.author,
     description: item.description,
     url: item.url,
@@ -43,7 +44,7 @@ function NewsListContainer({ url }) {
     id: item.id
   }));
 
-  return <NewsList news={receivedNews} />;
+  return <NewsList news={news} />;
 }
 
 export default NewsListContainer;

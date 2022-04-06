@@ -7,9 +7,9 @@ const newsRequested = () => ({
   type: types.FETCH_NEWS_REQUEST
 });
 
-const newsLoaded = (news) => ({
+const newsLoaded = (url, result) => ({
   type: types.FETCH_NEWS_SUCCESS,
-  payload: news
+  payload: [url, result]
 });
 
 const newsFailure = (error) => ({
@@ -26,7 +26,7 @@ const fetchNews = (url) => async (dispatch) => {
       id: idx,
       like: false
     }));
-    dispatch(newsLoaded(result));
+    dispatch(newsLoaded(url, result));
   } catch (error) {
     dispatch(newsFailure(error));
   }
