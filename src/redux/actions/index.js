@@ -17,9 +17,9 @@ const newsFailure = (error) => ({
   payload: error
 });
 
-const fetchNews = () => async (dispatch) => {
+const fetchNews = (url) => async (dispatch) => {
   dispatch(newsRequested());
-  const data = await newsService.getNews();
+  const data = await newsService.getNews(url);
   try {
     const result = data.articles.map((el, idx) => ({
       ...el,

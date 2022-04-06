@@ -14,8 +14,8 @@ export default class NewsService {
     return res.json();
   };
 
-  getNews = async () => {
-    const res = await this.getResource('/top-headlines?country=us');
+  getNews = async (url) => {
+    const res = await this.getResource(`/top-headlines?country=us&category=${url}`);
     return res;
   };
 }

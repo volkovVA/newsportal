@@ -26,15 +26,15 @@ function NewsList({ news }) {
   );
 }
 
-function NewsListContainer() {
+function NewsListContainer({ url }) {
   const dispatch = useDispatch();
-  const { news } = useSelector((state) => state.receivedNews);
+  const { receivedNews } = useSelector((state) => state.receivedNews);
 
   useEffect(() => {
-    dispatch(fetchNews());
-  }, [dispatch]);
+    dispatch(fetchNews(url));
+  }, []);
 
-  news.map((item) => ({
+  receivedNews.map((item) => ({
     title: item.author,
     description: item.description,
     url: item.url,
@@ -43,7 +43,7 @@ function NewsListContainer() {
     id: item.id
   }));
 
-  return <NewsList news={news} />;
+  return <NewsList news={receivedNews} />;
 }
 
 export default NewsListContainer;

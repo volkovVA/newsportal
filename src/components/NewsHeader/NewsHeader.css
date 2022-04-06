@@ -1,11 +1,14 @@
 .news-header {
+  margin-bottom: 3rem;
+  padding: 1rem;
+  border-bottom: 1px solid #b3b3b3;
+}
+
+.news-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  margin-bottom: 3rem;
-  padding: 1rem;
-  border-bottom: 1px solid #b3b3b3;
 }
 
 .news-header .logo {
@@ -23,12 +26,13 @@
   color: #dc3545;
 }
 
-@media (max-width: 769px) {
-  .news-header .logo {font-size: 2.5rem}
-}
-
 @media (max-width: 576px) {
-  .news-header .logo {font-size: 2rem}
+  .news-header .logo {
+    font-size: 2rem;
+  }
+  .news-row {
+    margin-bottom: 1rem;
+  }
 }
 
 .news-header .logo::before {
@@ -45,4 +49,8 @@
 
 .show-btn {
   margin-left: 0.5rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
 }

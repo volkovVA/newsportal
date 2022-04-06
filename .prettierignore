@@ -1,2 +1,2 @@
 .eslintrc.json
-src/services/news-service-context.js
+src/services/index.js

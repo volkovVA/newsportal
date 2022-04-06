@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import * as types from '../constants';
 
 const initialState = {
-  news: [],
+  receivedNews: [],
   loading: true,
   error: null
 };
@@ -17,7 +17,7 @@ const receivedNewsReducer = (state = initialState, action) => {
 
     case types.FETCH_NEWS_SUCCESS: {
       return {
-        news: action.payload,
+        receivedNews: action.payload,
         loading: false,
         error: null
       };
