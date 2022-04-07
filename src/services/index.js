@@ -3,8 +3,10 @@ export default class NewsService {
 
   apiKey = 'apiKey=68ddc42d54f24b94909580a960855996';
 
+  apiKey2 = 'apiKey=98ea975c67324ad9a3a54da6d117a14a';
+
   getResource = async (url) => {
-    const res = await fetch(`${this.apiBase}${url}&${this.apiKey}`);
+    const res = await fetch(`${this.apiBase}${url}&${this.apiKey2}`);
 
     if (!res.ok) {
       throw new Error(

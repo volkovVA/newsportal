@@ -1,7 +1,7 @@
 import React from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Masonry from 'react-masonry-css';
-// import { fetchNews, newsLike } from '../../redux/actions';
+import { newsLike } from '../../redux/actions';
 import NewsItem from '../NewsItem/NewsItem';
 import './NewsList.css';
 
@@ -27,14 +27,11 @@ function NewsList({ news, onAddedLike }) {
 }
 
 function NewsListContainer({ news }) {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const { receivedNews } = useSelector((state) => state.receivedNews);
 
-  // useEffect(() => {
-  //   dispatch(fetchNews(url));
-  // }, []);
+  const onAddedLike = (id) => dispatch(newsLike(id));
 
-  // const onAddedLike = (id) => dispatch(newsLike(id));
   news.map((item) => ({
     title: item.author,
     description: item.description,
@@ -44,7 +41,7 @@ function NewsListContainer({ news }) {
     id: item.id
   }));
 
-  return <NewsList news={news} />;
+  return <NewsList news={news} onAddedLike={onAddedLike} />;
 }
 
 export default NewsListContainer;

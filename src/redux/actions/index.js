@@ -17,19 +17,22 @@ const newsFailure = (error) => ({
   payload: error
 });
 
-const fetchNews = (url) => async (dispatch) => {
+export const newsLike = (newsId) => ({
+  type: types.NEWS_LIKE,
+  payload: newsId
+});
+
+export const fetchNews = (url) => async (dispatch) => {
   dispatch(newsRequested());
   const data = await newsService.getNews(url);
   try {
     const result = data.articles.map((el, idx) => ({
       ...el,
-      id: idx,
-      like: false
+      like: false,
+      id: idx + Math.random().toString(16).slice(2)
     }));
     dispatch(newsLoaded(url, result));
   } catch (error) {
     dispatch(newsFailure(error));
   }
 };
-
-export default fetchNews;
