@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NewsHeader.css';
+import Context from '../../сontext';
 
 function NewsHeader() {
+  const { onChange } = useContext(Context);
+
   return (
     <header className="news-header">
       <div className="news-row">
@@ -27,7 +30,7 @@ function NewsHeader() {
           <span className="navbar-toggler-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
+          <ul className="navbar-nav me-auto">
             <li className="nav-item active">
               <Link to="/" className="nav-link">
                 General
@@ -64,6 +67,15 @@ function NewsHeader() {
               </Link>
             </li>
           </ul>
+          <form className="form-inline">
+            <input
+              className="form-control mr-sm-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              onChange={onChange}
+            />
+          </form>
         </div>
       </nav>
     </header>
