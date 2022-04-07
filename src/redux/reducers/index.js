@@ -31,8 +31,7 @@ const receivedNewsReducer = (state = initialState, action) => {
           ...state.receivedNews,
           [action.payload[0]]: action.payload[1]
         },
-        loading: false,
-        error: null
+        loading: false
       };
     }
 
