@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Masonry from 'react-masonry-css';
-import { newsLike } from '../../redux/actions';
+import { newsLike, deleteCard } from '../../redux/actions';
 import NewsItem from '../NewsItem/NewsItem';
 import './NewsList.css';
 
@@ -12,7 +12,7 @@ const breakpointColumnsObj = {
   500: 1
 };
 
-function NewsList({ news, onAddedLike }) {
+function NewsList({ news, onAddedLike, onDeleteCard }) {
   return (
     <Masonry
       breakpointCols={breakpointColumnsObj}
@@ -20,7 +20,12 @@ function NewsList({ news, onAddedLike }) {
       columnClassName="my-masonry-grid_column"
     >
       {news.map((item) => (
-        <NewsItem key={item.id} news={item} onAddedLike={onAddedLike} />
+        <NewsItem
+          key={item.id}
+          news={item}
+          onAddedLike={onAddedLike}
+          onDeleteCard={onDeleteCard}
+        />
       ))}
     </Masonry>
   );
@@ -28,12 +33,13 @@ function NewsList({ news, onAddedLike }) {
 
 function NewsListContainer({ news }) {
   const dispatch = useDispatch();
-  // const { receivedNews } = useSelector((state) => state.receivedNews);
 
   const onAddedLike = (id) => dispatch(newsLike(id));
+  const onDeleteCard = (id) => dispatch(deleteCard(id));
 
-  news.map((item) => ({
-    title: item.author,
+  const newsSelector = news.map((item) => ({
+    title: item.title,
+    author: item.author,
     description: item.description,
     url: item.url,
     urlToImage: item.urlToImage,
@@ -41,7 +47,13 @@ function NewsListContainer({ news }) {
     id: item.id
   }));
 
-  return <NewsList news={news} onAddedLike={onAddedLike} />;
+  return (
+    <NewsList
+      news={newsSelector}
+      onAddedLike={onAddedLike}
+      onDeleteCard={onDeleteCard}
+    />
+  );
 }
 
 export default NewsListContainer;

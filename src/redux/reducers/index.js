@@ -46,7 +46,7 @@ const receivedNewsReducer = (state = initialState, action) => {
 
     case types.NEWS_LIKE: {
       const newsId = action.payload;
-      const receivedNews = Object.fromEntries(
+      const likeNews = Object.fromEntries(
         Object.entries(state.receivedNews).map((el) => {
           return [
             el[0],
@@ -59,7 +59,21 @@ const receivedNewsReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        receivedNews
+        receivedNews: likeNews
+      };
+    }
+
+    case types.DELETE_CARD: {
+      const newsId = action.payload;
+      const deletedNews = Object.fromEntries(
+        Object.entries(state.receivedNews).map((el) => {
+          return [el[0], el[1].filter((el) => el.id !== newsId)];
+        })
+      );
+
+      return {
+        ...state,
+        receivedNews: deletedNews
       };
     }
 

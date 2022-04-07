@@ -1,7 +1,7 @@
 import React from 'react';
 import './NewsItem.css';
 
-function NewsItem({ news, onAddedLike }) {
+function NewsItem({ news, onAddedLike, onDeleteCard }) {
   const urlImage = 'https://pbs.twimg.com/media/DDlO-OIUQAAw-8d.jpg';
 
   return (
@@ -36,7 +36,11 @@ function NewsItem({ news, onAddedLike }) {
                 <i className="bi-hand-thumbs-up" role="img" />
               )}
             </button>
-            <button type="button" className="btn btn-danger news-card-btn">
+            <button
+              type="button"
+              className="btn btn-danger news-card-btn"
+              onClick={() => onDeleteCard(news.id)}
+            >
               <i className="bi-trash" role="img" />
             </button>
           </div>
