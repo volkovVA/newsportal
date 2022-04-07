@@ -12,6 +12,7 @@ const initialState = {
     sports: [],
     technology: []
   },
+  selectedNews: [],
   loading: true,
   error: null
 };
@@ -57,9 +58,16 @@ const receivedNewsReducer = (state = initialState, action) => {
         })
       );
 
+      const likeSelectedNews = state.selectedNews
+        .map((news) => {
+          return news.id === newsId ? { ...news, like: !news.like } : news;
+        })
+        .filter((el) => el.id !== newsId);
+
       return {
         ...state,
-        receivedNews: likeNews
+        receivedNews: likeNews,
+        selectedNews: likeSelectedNews
       };
     }
 
@@ -71,9 +79,27 @@ const receivedNewsReducer = (state = initialState, action) => {
         })
       );
 
+      const deleteSelectedNews = state.selectedNews.filter(
+        (el) => el.id !== newsId
+      );
+
       return {
         ...state,
-        receivedNews: deletedNews
+        receivedNews: deletedNews,
+        selectedNews: deleteSelectedNews
+      };
+    }
+
+    case types.SELECTED_NEWS: {
+      const selectedNews = Object.values(state.receivedNews)
+        .map((el) => {
+          return el.filter((el) => el.like);
+        })
+        .flat();
+
+      return {
+        ...state,
+        selectedNews
       };
     }
 

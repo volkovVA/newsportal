@@ -5,3 +5,5 @@ export const FETCH_NEWS_FAILURE = 'FETCH_NEWS_FAILURE';
 export const NEWS_LIKE = 'NEWS_LIKE';
 
 export const DELETE_CARD = 'DELETE_CARD';
+
+export const SELECTED_NEWS = 'SELECTED_NEWS';

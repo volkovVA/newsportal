@@ -8,6 +8,7 @@ import Health from '../NewsComponents/Health';
 import Science from '../NewsComponents/Science';
 import Sports from '../NewsComponents/Sports';
 import Technology from '../NewsComponents/Technology';
+import NewsSelected from '../NewsSelected/NewsSelected';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/science" element={<Science />} />
           <Route path="/sports" element={<Sports />} />
           <Route path="/technology" element={<Technology />} />
+          <Route path="/selected" element={<NewsSelected />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -27,6 +27,10 @@ export const deleteCard = (newsId) => ({
   payload: newsId
 });
 
+export const selectedNews = () => ({
+  type: types.SELECTED_NEWS
+});
+
 export const fetchNews = (url) => async (dispatch) => {
   dispatch(newsRequested());
   const data = await newsService.getNews(url);

@@ -10,9 +10,9 @@ function NewsHeader() {
           <span>news</span>
           portal
         </a>
-        <button type="button" className="btn btn-primary show-btn">
+        <Link to="/selected" className="btn btn-primary show-btn">
           Show Selected
-        </button>
+        </Link>
       </div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary p-2 border border-secondary rounded">
         <button
