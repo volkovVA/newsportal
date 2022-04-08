@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import Masonry from 'react-masonry-css';
 import { newsLike, deleteCard } from '../../redux/actions';
-import NewsItem from '../NewsItem/NewsItem';
-import './NewsList.css';
 import Context from '../../сontext';
+import './NewsList.css';
+
+import NewsItem from '../NewsItem/NewsItem';
 
 const breakpointColumnsObj = {
   default: 3,

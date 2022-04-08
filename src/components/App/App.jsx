@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Context from '../../сontext';
+
 import NewsHeader from '../NewsHeader/NewsHeader';
 import General from '../NewsComponents/General';
 import Business from '../NewsComponents/Business';

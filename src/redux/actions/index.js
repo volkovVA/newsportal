@@ -27,7 +27,7 @@ export const deleteCard = (newsId) => ({
   payload: newsId
 });
 
-export const selectedNews = () => ({
+export const selectNews = () => ({
   type: types.SELECTED_NEWS
 });
 

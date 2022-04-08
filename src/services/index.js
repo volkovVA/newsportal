@@ -6,18 +6,18 @@ export default class NewsService {
   apiKey2 = 'apiKey=98ea975c67324ad9a3a54da6d117a14a';
 
   getResource = async (url) => {
-    const res = await fetch(`${this.apiBase}${url}&${this.apiKey2}`);
+    const result = await fetch(`${this.apiBase}${url}&${this.apiKey2}`);
 
-    if (!res.ok) {
+    if (!result.ok) {
       throw new Error(
-        `Could not fetch ${this.apiBase}${url}, received ${res.status}`
+        `Could not fetch ${this.apiBase}${url}, received ${result.status}`
       );
     }
-    return res.json();
+    return result.json();
   };
 
   getNews = async (url) => {
-    const res = await this.getResource(`/top-headlines?country=us&category=${url}`);
-    return res;
+    const result = await this.getResource(`/top-headlines?country=us&category=${url}`);
+    return result;
   };
 }

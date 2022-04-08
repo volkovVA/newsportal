@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectedNews } from '../../redux/actions';
+import { selectNews } from '../../redux/actions';
+
 import NewsListContainer from '../NewsList/NewsList';
+import Spinner from '../Spinner/Spinner';
 
 function NewsSelected() {
   const dispatch = useDispatch();
-  const news = useSelector((state) => state.receivedNews);
+  const { selectedNews, loading } = useSelector((state) => state.news);
 
   useEffect(() => {
-    dispatch(selectedNews());
+    dispatch(selectNews());
   }, [dispatch]);
 
-  // if (news.loading) {
-  //   return <Spinner />;
-  // }
-  // if (news.error) {
-  //   return <ErrorIndicator />;
-  // }
+  if (loading) {
+    return <Spinner />;
+  }
 
-  return <NewsListContainer news={news.selectedNews} />;
+  return <NewsListContainer news={selectedNews} />;
 }
 
 export default NewsSelected;

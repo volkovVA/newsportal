@@ -42,13 +42,25 @@
   margin-top: 7px;
   width: 3.5rem;
   height: 3.5rem;
-  background-image: url('../../assets/image/logo/earthglobe.png');
+  background-image: url('../../assets/image/earthglobe.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .show-btn {
-  margin-left: 0.5rem;
+  margin: 0 1rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 992px) {
+  .show-btn {
+    margin: 0 0 0.5rem;
+  }
+  .navbar .show-btn .nav-link {
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 }
 
 .navbar-dark .navbar-nav .nav-link {

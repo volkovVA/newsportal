@@ -17,7 +17,7 @@ const initialState = {
   error: null
 };
 
-const receivedNewsReducer = (state = initialState, action) => {
+const newsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.FETCH_NEWS_REQUEST: {
       return {
@@ -47,12 +47,14 @@ const receivedNewsReducer = (state = initialState, action) => {
 
     case types.NEWS_LIKE: {
       const newsId = action.payload;
+      const setLike = (news) =>
+        news.id === newsId ? { ...news, like: !news.like } : news;
       const likeNews = Object.fromEntries(
-        Object.entries(state.receivedNews).map((el) => {
+        Object.entries(state.receivedNews).map((item) => {
           return [
-            el[0],
-            el[1].map((news) => {
-              return news.id === newsId ? { ...news, like: !news.like } : news;
+            item[0],
+            item[1].map((news) => {
+              return setLike(news);
             })
           ];
         })
@@ -60,9 +62,9 @@ const receivedNewsReducer = (state = initialState, action) => {
 
       const likeSelectedNews = state.selectedNews
         .map((news) => {
-          return news.id === newsId ? { ...news, like: !news.like } : news;
+          return setLike(news);
         })
-        .filter((el) => el.id !== newsId);
+        .filter((news) => news.id !== newsId);
 
       return {
         ...state,
@@ -74,13 +76,13 @@ const receivedNewsReducer = (state = initialState, action) => {
     case types.DELETE_CARD: {
       const newsId = action.payload;
       const deletedNews = Object.fromEntries(
-        Object.entries(state.receivedNews).map((el) => {
-          return [el[0], el[1].filter((el) => el.id !== newsId)];
+        Object.entries(state.receivedNews).map((item) => {
+          return [item[0], item[1].filter((news) => news.id !== newsId)];
         })
       );
 
       const deleteSelectedNews = state.selectedNews.filter(
-        (el) => el.id !== newsId
+        (news) => news.id !== newsId
       );
 
       return {
@@ -92,8 +94,8 @@ const receivedNewsReducer = (state = initialState, action) => {
 
     case types.SELECTED_NEWS: {
       const selectedNews = Object.values(state.receivedNews)
-        .map((el) => {
-          return el.filter((el) => el.like);
+        .map((item) => {
+          return item.filter((news) => news.like);
         })
         .flat();
 
@@ -109,5 +111,5 @@ const receivedNewsReducer = (state = initialState, action) => {
 };
 
 export default combineReducers({
-  receivedNews: receivedNewsReducer
+  news: newsReducer
 });
