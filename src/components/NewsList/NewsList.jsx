@@ -6,6 +6,7 @@ import Context from '../../сontext';
 import './NewsList.css';
 
 import NewsItem from '../NewsItem/NewsItem';
+import Spinner from '../Spinner/Spinner';
 
 const breakpointColumnsObj = {
   default: 3,
@@ -34,7 +35,7 @@ function NewsList({ news, onAddedLike, onDeleteCard }) {
 }
 
 function NewsListContainer({ news }) {
-  const { value } = useContext(Context);
+  const { value, isPending } = useContext(Context);
   const dispatch = useDispatch();
   const onAddedLike = (id) => dispatch(newsLike(id));
   const onDeleteCard = (id) => dispatch(deleteCard(id));
@@ -52,6 +53,10 @@ function NewsListContainer({ news }) {
   const newsFilter = newsSelector.filter((el) =>
     el.title.toLowerCase().includes(value.toLowerCase())
   );
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <NewsList

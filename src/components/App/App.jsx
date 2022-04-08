@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useTransition } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Context from '../../сontext';
 
@@ -14,8 +14,15 @@ import NewsSelected from '../NewsSelected/NewsSelected';
 
 function ContextProvider({ children }) {
   const [value, setValue] = useState('');
-  const onChange = (e) => setValue(e.target.value);
-  const search = useMemo(() => ({ onChange, value }), [onChange, value]);
+  const [isPending, startTransition] = useTransition();
+  const onChange = (e) =>
+    startTransition(() => {
+      setValue(e.target.value);
+    });
+  const search = useMemo(
+    () => ({ onChange, value, isPending }),
+    [onChange, value, isPending]
+  );
 
   return <Context.Provider value={search}>{children}</Context.Provider>;
 }
